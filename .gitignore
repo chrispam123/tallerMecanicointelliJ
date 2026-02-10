@@ -1,0 +1,15 @@
+# Archivos de la IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Archivos de compilación
+out/
+build/
+classes/
+
+# Archivos temporales de sistema
+.DS_Store
+Thumbs.db
+
