@@ -1,4 +1,7 @@
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList; //inicializamos el arraylist para guardar datos
 import java.util.Scanner;
 
@@ -15,7 +18,7 @@ public class Taller {
     public Taller() {
 
         this.inventario = new ArrayList<>(); //dejamos espacio en memoria
-        //llamamos a la preparación apenas se cree el taller
+        //llamamos a la preparación apenas se cree el taller al inciar Taller taller=new Taller();
         prepararArchivo();
 
     }
@@ -57,13 +60,43 @@ public class Taller {
 
     }
 
+
+
+
+
+
+
     //metodo agregar vehiculo este es el inventario
     public boolean agregarVehiculo(String placa, String marca, String modelo ) {
 
         Vehiculo coche = new Vehiculo(placa, marca, modelo);
         inventario.add(coche);
+        escribirArchivo(coche);
         return true;
     }
+
+    //NUEVO metodo escribir en archivo
+    public void escribirArchivo(Vehiculo coche){
+
+        //preparamos la línea de texto (Formato:Placa,Marca,Modelo);
+        String linea=coche.getPlaca()+ ","+ coche.getMarca()+ ","+ coche.getModelo();
+        try(FileWriter fw = new FileWriter(ARCHIVO,true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter out = new PrintWriter(bw)) {
+                out.println(linea);// escribimos la linea y saltamos a la siguiente
+
+
+
+
+        }catch(Exception e){
+            System.out.println("error al escribir el archivo");
+        }
+
+
+
+    }
+
+
     //metodo mostrar vehiculo
     public void mostrarVehiculo() {
         for (Vehiculo coche : inventario) {
