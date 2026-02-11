@@ -3,11 +3,12 @@
 *.iml
 *.iws
 *.ipr
-
+*.class
 # Archivos de compilación
 out/
 build/
 classes/
+data/
 
 # Archivos temporales de sistema
 .DS_Store
