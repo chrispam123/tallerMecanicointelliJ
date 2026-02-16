@@ -96,6 +96,19 @@ public class Taller {
 
     }
 
+//metodo cargar datos
+
+    private void cargarDatos(){
+
+        //usamos try-with recursos para que el lector se cierre solo
+
+
+
+
+    }
+
+
+
 
     //metodo mostrar vehiculo
     public void mostrarVehiculo() {
