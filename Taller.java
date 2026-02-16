@@ -1,7 +1,4 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList; //inicializamos el arraylist para guardar datos
 import java.util.Scanner;
 
@@ -20,7 +17,7 @@ public class Taller {
         this.inventario = new ArrayList<>(); //dejamos espacio en memoria
         //llamamos a la preparación apenas se cree el taller al inciar Taller taller=new Taller();
         prepararArchivo();
-
+        cargarDatos();
     }
     //preparar carpetas y archivos es lo primero
     private void prepararArchivo(){
@@ -95,6 +92,46 @@ public class Taller {
 
 
     }
+
+//metodo cargar datos
+
+    private void cargarDatos(){
+
+        //usamos try-with recursos para que el lector se cierre solo
+        try (FileReader fr = new FileReader(ARCHIVO);
+        BufferedReader br= new BufferedReader(fr))
+        { String linea;
+            //while
+            while((linea=br.readLine())!=null){
+                //se rompe la linea donde haya una ;
+                String[] datos=linea.split(",");
+                //si la linea tiene las 3 partes (placa,marca,modelo)
+                if(datos.length==3){
+
+                    Vehiculo coche = new Vehiculo(datos[0], datos[1], datos[2]);
+                    this.inventario.add(coche);//lo metemos en la ram
+
+                }
+
+            }
+
+
+        }catch(FileNotFoundException e){
+
+            System.out.println("no hay datos para cargar");
+
+        }catch (IOException e){
+            System.out.println("error al cargar datos para cargar");
+            e.getMessage();
+
+
+        }
+
+
+
+    }
+
+
 
 
     //metodo mostrar vehiculo
